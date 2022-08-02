@@ -1,5 +1,4 @@
-﻿using ncrypt.Domain;
-using ncrypt.Library.Hash;
+﻿using ncrypt.Library.Hash;
 using System.Security.Cryptography;
 using System.Text;
 
