@@ -37,7 +37,7 @@ public class RSAService
         result.AppendLine ("");
         result.AppendLine (privateSB.ToString ());
 
-        return result.ToString();
+        return Converter.ToHex(result.ToString(), ConvertType.ASCII);
     }
 
     [RenderUI]

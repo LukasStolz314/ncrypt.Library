@@ -25,12 +25,12 @@ public class SHAService
     };
 
     [RenderUI]
-    public String Hash(String data, HashType type)
+    public String Hash(String input, HashType type)
     {
         Byte[] resultBytes;
         using (var alg = GetHashInstance (type))
         {
-            var dataToHash = Converter.ToByteArray (data, ConvertType.ASCII);
+            var dataToHash = Converter.ToByteArray (input, ConvertType.ASCII);
             resultBytes = alg.ComputeHash (dataToHash);
         }
 

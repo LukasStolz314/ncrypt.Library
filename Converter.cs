@@ -87,9 +87,6 @@ public class Converter
 
     private static String FromHexToAscii (String text)
     {
-        if (text.Length % 2 == 1)
-            text = text.Insert (0, "0");
-
         // Used from https://stackoverflow.com/questions/5613279/c-sharp-hex-to-ascii
         StringBuilder sb = new StringBuilder ();
 
