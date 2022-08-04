@@ -8,7 +8,7 @@ namespace ncrypt.Library.Cipher;
 public class RSAService
 {
     [RenderUI]
-    public String GenerateKeyPair(Int32 keySize)
+    public String GenerateKeyPair([UIParam("Key Size")] Int32 keySize)
     {
         // Create key pair and export to Base64 String
         String privateKey;
@@ -41,7 +41,7 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Encrypt(String publicKey, String input)
+    public String Encrypt([UIParam("Public Key")] String publicKey, String input)
     {
         Byte[] resultBytes;
         String asciiKey = Converter.FromHex(publicKey, ConvertType.ASCII);
@@ -57,7 +57,7 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Decrypt(String privateKey, String input)
+    public String Decrypt([UIParam("Private Key")] String privateKey, String input)
     {
         Byte[] resultBytes;
         String asciiKey = Converter.FromHex(privateKey, ConvertType.ASCII);
@@ -73,7 +73,8 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Sign(String privateKey, String input, HashType hash)
+    public String Sign([UIParam("Private Key")] String privateKey,
+        String input, [UIParam("Hash-Type")] HashType hash)
     {
         Byte[] resultBytes;
         using (RSACryptoServiceProvider rsa = new())
@@ -89,7 +90,8 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Verify(String publicKey, String input, String signature, HashType hash)
+    public String Verify([UIParam("Public Key")] String publicKey, String input,
+        [UIParam("Signature")] String signature, [UIParam("Hash-Type")] HashType hash)
     {
         Boolean result;
         using (RSACryptoServiceProvider rsa = new())
@@ -98,7 +100,9 @@ public class RSAService
             rsa.ImportFromPem (asciiKey.ToCharArray ());
             var dataToVerify = Converter.ToByteArray (input, ConvertType.ASCII);
             var signatureToVerify = Converter.ToByteArray (signature, ConvertType.HEX);
-            result = rsa.VerifyData (dataToVerify, SHAService.GetHashInstance(hash), signatureToVerify);
+
+            result = rsa.VerifyData (dataToVerify,
+                SHAService.GetHashInstance(hash), signatureToVerify);
         }
 
         return result == true ? "Valid" : "Invalid";

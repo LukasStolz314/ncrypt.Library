@@ -8,14 +8,14 @@ public class AESService
     private Byte[] _key;
     private CipherMode _mode;
 
-    public AESService(String key, CipherMode mode)
+    public AESService([UIParam("Key")] String key, [UIParam("Mode")] CipherMode mode)
     {
         _key = Converter.ToByteArray (key, ConvertType.HEX);
         _mode = mode;
     }
 
     [RenderUI]
-    public String Encrypt(String input, String iv)
+    public String Encrypt(String input, [UIParam("IV")] String iv)
     {
         // Create aes with given parameters
         Aes aes = CreateAes (iv);
@@ -44,7 +44,7 @@ public class AESService
     }
 
     [RenderUI]
-    public String Decrypt(String input, String iv)
+    public String Decrypt(String input, [UIParam("IV")] String iv)
     {
         //Create aes with given parameters
         Aes aes = CreateAes (iv);
