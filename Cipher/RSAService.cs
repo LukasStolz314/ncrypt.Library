@@ -8,6 +8,7 @@ namespace ncrypt.Library.Cipher;
 public class RSAService
 {
     [RenderUI]
+    [UseCopy("CopyPublicKey")]
     public String GenerateKeyPair([UIParam("Key Size")] Int32 keySize)
     {
         // Create key pair and export to Base64 String
@@ -106,5 +107,10 @@ public class RSAService
         }
 
         return result == true ? "Valid" : "Invalid";
+    }
+
+    public String CopyPublicKey(String output)
+    {
+        return output.Split("----BEGIN RSA PRIVATE KEY-----")[0];
     }
 }

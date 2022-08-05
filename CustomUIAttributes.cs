@@ -19,3 +19,14 @@ public class UIParam : Attribute
     public UIParam(String? name) 
         => Name = name;
 }
+
+public class UseCopy : Attribute
+{
+    public List<String> CopyFunctions { get; set; }
+
+    public UseCopy(List<String> copyFunctions)
+        => CopyFunctions = copyFunctions;
+
+    public UseCopy(String copyFunction)
+        => CopyFunctions = new() { copyFunction };
+}
