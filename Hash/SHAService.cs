@@ -25,7 +25,7 @@ public class SHAService
     };
 
     [RenderUI]
-    public String Hash(String input, HashType type)
+    public String Hash(String input, [UIParam("Hash-Type")] HashType type)
     {
         Byte[] resultBytes;
         using (var alg = GetHashInstance (type))

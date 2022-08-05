@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace ncrypt.Library.Code;
+﻿namespace ncrypt.Library.Code;
 
 [RenderUI (Class = RenderClass.Format)]
 public class Base64Service
