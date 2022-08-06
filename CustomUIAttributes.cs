@@ -24,9 +24,14 @@ public class UseCopy : Attribute
 {
     public List<String> CopyFunctions { get; set; }
 
-    public UseCopy(List<String> copyFunctions)
-        => CopyFunctions = copyFunctions;
+    public UseCopy(params String[] copyFunctions)
+        => CopyFunctions = copyFunctions.ToList();
+}
 
-    public UseCopy(String copyFunction)
-        => CopyFunctions = new() { copyFunction };
+public class CopyRoutine : Attribute
+{
+    public String? Name { get; set; }
+
+    public CopyRoutine(String? name)
+        => Name = name;
 }
