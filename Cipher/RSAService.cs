@@ -42,7 +42,7 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Encrypt([UIParam("Public Key", "Enter public key here...")] 
+    public String Encrypt([UIParam("Public Key", "PEM-Format")]
         String publicKey, String input)
     {
         Byte[] resultBytes;
@@ -59,7 +59,8 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Decrypt([UIParam("Private Key")] String privateKey, String input)
+    public String Decrypt([UIParam("Private Key", "PEM-Format")]
+        String privateKey, String input)
     {
         Byte[] resultBytes;
         String asciiKey = Converter.FromHex(privateKey, ConvertType.ASCII);
@@ -111,10 +112,20 @@ public class RSAService
     }
 
     [CopyRoutine("Copy Public Key")]
-    public String CopyPublicKey(String output) 
-        => output.Split("----BEGIN RSA PRIVATE KEY-----").First();
+    public String CopyPublicKey(String output)
+    {
+        String asciiText = Converter.FromHex(output, ConvertType.ASCII);
+        var splitted = asciiText.Split("-----BEGIN RSA PRIVATE KEY-----").First().Trim();
+        String hexText = Converter.ToHex(splitted, ConvertType.ASCII);
+        return hexText;
+    }
 
     [CopyRoutine("Copy Private Key")]
-    public String CopyPrivateKey(String output) 
-        => output.Split("-----END RSA PUBLIC KEY-----").Last();
+    public String CopyPrivateKey(String output)
+    {
+        String asciiText = Converter.FromHex(output, ConvertType.ASCII);
+        var splitted = asciiText.Split("-----END RSA PUBLIC KEY-----").Last().Trim();
+        String hexText = Converter.ToHex(splitted, ConvertType.ASCII);
+        return hexText;
+    }
 }
