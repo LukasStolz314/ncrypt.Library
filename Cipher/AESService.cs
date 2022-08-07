@@ -8,7 +8,8 @@ public class AESService
     private Byte[] _key;
     private CipherMode _mode;
 
-    public AESService([UIParam("Key")] String key, [UIParam("Mode")] CipherMode mode)
+    public AESService([UIParam("Key")] String key,
+        [UIParam("Mode", "Pick mode")] CipherMode mode)
     {
         _key = Converter.ToByteArray (key, ConvertType.HEX);
         _mode = mode;

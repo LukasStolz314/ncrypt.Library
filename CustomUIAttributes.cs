@@ -15,9 +15,13 @@ public class RenderUI : Attribute
 public class UIParam : Attribute
 {
     public String? Name { get; set; }
+    public String? DefaultValue { get; set; }
 
-    public UIParam(String? name) 
-        => Name = name;
+    public UIParam(String? name, String? defaultValue = null)
+    { 
+        Name = name;
+        DefaultValue = defaultValue;
+    }
 }
 
 public class UseCopy : Attribute

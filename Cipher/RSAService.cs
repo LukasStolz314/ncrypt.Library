@@ -9,7 +9,7 @@ public class RSAService
 {
     [RenderUI]
     [UseCopy("CopyPublicKey", "CopyPrivateKey")]
-    public String GenerateKeyPair([UIParam("Key Size")] Int32 keySize)
+    public String GenerateKeyPair([UIParam("Key Size", "1024")] Int32 keySize)
     {
         // Create key pair and export to Base64 String
         String privateKey;
@@ -42,7 +42,8 @@ public class RSAService
     }
 
     [RenderUI]
-    public String Encrypt([UIParam("Public Key")] String publicKey, String input)
+    public String Encrypt([UIParam("Public Key", "Enter public key here...")] 
+        String publicKey, String input)
     {
         Byte[] resultBytes;
         String asciiKey = Converter.FromHex(publicKey, ConvertType.ASCII);
