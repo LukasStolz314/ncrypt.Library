@@ -4,7 +4,8 @@ public enum RenderClass
 {
     Cipher,
     Format,
-    Hash
+    Hash,
+    Certificate
 }
 
 public class RenderUI : Attribute 
